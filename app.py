@@ -22,4 +22,4 @@ def delete_task(index):
     return redirect('/')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)   # <-- Updated for EC2 access
+    app.run(host='0.0.0.0', port=5000)  # Accessible from browser externally
