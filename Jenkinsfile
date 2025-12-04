@@ -34,11 +34,11 @@ pipeline {
         stage('Run Application') {
             steps {
                 sh '''
-                cd /var/lib/jenkins/workspace/git      # go to project directory
+                cd /var/lib/jenkins/workspace/git   # Go inside project folder
                 nohup /usr/bin/python3 app.py > app.log 2>&1 &
                 sleep 5
                 '''
-                echo "Application Started"
+                echo "Flask Application Started Successfully"
             }
         }
     }
