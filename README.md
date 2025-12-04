@@ -29,8 +29,11 @@ Build Docker image
 Stop old container & deploy new one
 
 docker build -t mini-flask-app .
+
 docker stop mini-flask-app || true
+
 docker rm mini-flask-app || true
+
 docker run -d -p 50001:5000 --name mini-flask-app mini-flask-app
 
 Run App
