@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        githubPush()   // Auto-trigger on push to GitHub
+        githubPush()
     }
 
     stages {
@@ -28,19 +28,18 @@ pipeline {
             }
         }
 
-        stage('Restart Flask App Service') {
+        stage('Restart Flask Service') {
             steps {
                 sh '''
                 sudo systemctl daemon-reload
                 sudo systemctl restart flask
                 '''
-                echo "Flask Service Restarted Successfully"
             }
         }
     }
 
     post {
-        success { echo "Deployment Successful" }
-        failure { echo "Build Failed, check logs" }
+        success { echo "Deployment Success" }
+        failure { echo "Deployment Failed - Check Console Output" }
     }
 }
