@@ -33,7 +33,7 @@ pipeline {
             steps {
                 sh '''
                 cd /var/lib/jenkins/workspace/git
-                docker run -d --name mini-flask-app -p 5000:5000 mini-flask-app
+                docker run -d --name mini-flask-app -p 5001:5000 mini-flask-app
                 '''
             }
         }
