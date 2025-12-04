@@ -1,4 +1,4 @@
-evOps Project – Flask Todo App CI/CD with Jenkins & Docker
+DevOps Project – Flask Todo App CI/CD with Jenkins & Docker
 
 This project demonstrates a simple CI/CD pipeline where a Flask To-Do application automatically builds and deploys as a Docker container on AWS EC2 whenever code is pushed to GitHub.
 
