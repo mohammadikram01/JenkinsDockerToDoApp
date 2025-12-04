@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do Web App</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background:#f5f5f5; }
+        .container { width:400px; background:#fff; padding:20px; border-radius:8px; }
+        input{ padding:8px; width:70%; }
+        button{ padding:8px 12px; }
+        ul{ list-style:none; padding:0; }
+        li{ margin:8px 0; background:#e8e8e8; padding:8px; border-radius:5px; display:flex; justify-content:space-between; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Simple To-Do Web App 📝</h2>
+
+        <form action="/add" method="post">
+            <input type="text" name="task" placeholder="Enter task">
+            <button type="submit">Add</button>
+        </form>
+
+        <ul>
+            {% for task in tasks %}
+            <li>
+                {{ task }}
+                <a href="/delete/{{ loop.index0 }}">❌</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
