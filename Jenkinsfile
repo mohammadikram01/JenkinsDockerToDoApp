@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        githubPush()
+        githubPush()   // Auto-trigger on push to GitHub
     }
 
     stages {
@@ -15,7 +15,10 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip3 install -r requirements.txt'
+                sh '''
+                cd /var/lib/jenkins/workspace/git
+                pip3 install -r requirements.txt
+                '''
             }
         }
 
@@ -25,26 +28,19 @@ pipeline {
             }
         }
 
-        stage('Stop Previous App') {
-            steps {
-                sh "pkill -f app.py || true"
-            }
-        }
-
-        stage('Run Application') {
+        stage('Restart Flask App Service') {
             steps {
                 sh '''
-                cd /var/lib/jenkins/workspace/git   # Go inside project folder
-                nohup /usr/bin/python3 app.py > app.log 2>&1 &
-                sleep 5
+                sudo systemctl daemon-reload
+                sudo systemctl restart flask
                 '''
-                echo "Flask Application Started Successfully"
+                echo "Flask Service Restarted Successfully"
             }
         }
     }
 
     post {
         success { echo "Deployment Successful" }
-        failure { echo "Build Failed" }
+        failure { echo "Build Failed, check logs" }
     }
 }
