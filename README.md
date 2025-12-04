@@ -46,6 +46,7 @@ http://54.226.154.186:50001
 
 Outcomes
 
+
 Fully automated CI/CD pipeline
 
 Auto deployment on every git push
